@@ -2,10 +2,10 @@
 name = "isdocker"
 version = "0.1.0"
 edition = "2021"
-authors = ["isdocker contributors"]
+authors = ["Shahnoor Mujawar"]
 description = "Detect whether the current process is running inside a Docker container"
 documentation = "https://docs.rs/isdocker"
-repository = "https://github.com/your-username/isdocker"
+repository = "https://github.com/shahnoormujawar/isdocker"
 license = "MIT"
 keywords = ["docker", "container", "environment", "runtime", "detection"]
 categories = ["development-tools", "os"]
