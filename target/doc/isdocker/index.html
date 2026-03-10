@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="isdocker"><title>isdocker - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="isdocker" data-themes="" data-resource-suffix="" data-rustdoc-version="1.94.0 (4a4ef493e 2026-03-02)" data-channel="1.94.0" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Crate isdocker</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../isdocker/index.html">isdocker</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#isdocker" title="isdocker">isdocker</a><ul><li><a href="#detection-strategy" title="Detection strategy">Detection strategy</a></li><li><a href="#safety-guarantees" title="Safety guarantees">Safety guarantees</a></li><li><a href="#example" title="Example">Example</a></li></ul></li></ul><h3><a href="#functions">Crate Items</a></h3><ul class="block"><li><a href="#functions" title="Functions">Functions</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>isdocker</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/isdocker/lib.rs.html#1-163">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="isdocker"><a class="doc-anchor" href="#isdocker">§</a>isdocker</h2>
+<p>A tiny, zero-dependency library that detects whether the current process is
+running inside a Docker container (or a compatible container runtime).</p>
+<h3 id="detection-strategy"><a class="doc-anchor" href="#detection-strategy">§</a>Detection strategy</h3>
+<p>On <strong>Linux</strong>, two checks are performed in order:</p>
+<ol>
+<li>
+<p><strong><code>.dockerenv</code> file</strong> — Docker creates <code>/.dockerenv</code> inside every
+container. If this file exists, the process is almost certainly running
+inside a Docker container.</p>
+</li>
+<li>
+<p><strong>cgroup membership</strong> — <code>/proc/self/cgroup</code> is read and scanned for
+well-known container runtime identifiers: <code>docker</code>, <code>kubepods</code>, and
+<code>containerd</code>. A match on any of these indicates a containerised
+environment.</p>
+</li>
+</ol>
+<p>On <strong>non-Linux platforms</strong> (macOS, Windows, …) the function always returns
+<code>false</code> without performing any I/O.</p>
+<h3 id="safety-guarantees"><a class="doc-anchor" href="#safety-guarantees">§</a>Safety guarantees</h3>
+<ul>
+<li>Never panics.</li>
+<li>Returns <code>false</code> on any I/O error rather than propagating errors.</li>
+<li>Performs no heap allocations on the happy path (<code>.dockerenv</code> check).</li>
+</ul>
+<h3 id="example"><a class="doc-anchor" href="#example">§</a>Example</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>isdocker::is_docker;
+
+<span class="kw">if </span>is_docker() {
+    <span class="macro">println!</span>(<span class="string">"Running inside Docker"</span>);
+} <span class="kw">else </span>{
+    <span class="macro">println!</span>(<span class="string">"Not running inside Docker"</span>);
+}</code></pre></div></div></details><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><dl class="item-table"><dt><a class="fn" href="fn.is_docker.html" title="fn isdocker::is_docker">is_<wbr>docker</a></dt><dd>Returns <code>true</code> if the current process appears to be running inside a Docker
+container (or a compatible OCI container runtime such as containerd or a
+Kubernetes pod), and <code>false</code> otherwise.</dd></dl></section></div></main></body></html>
