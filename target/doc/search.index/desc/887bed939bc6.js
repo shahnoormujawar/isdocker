@@ -1,1 +1,0 @@
-rd_("hisdockerDjReturns <code>true</code> if the current process appears to be running \xe2\x80\xa6")
