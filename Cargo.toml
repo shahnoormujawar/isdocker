@@ -1,9 +1,9 @@
 [package]
 name = "isdocker"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 authors = ["Shahnoor Mujawar"]
-description = "Detect whether the current process is running inside a Docker container"
+description = "Detect whether the current process is running inside a Docker or OCI container"
 documentation = "https://docs.rs/isdocker"
 repository = "https://github.com/shahnoormujawar/isdocker"
 license = "MIT"
